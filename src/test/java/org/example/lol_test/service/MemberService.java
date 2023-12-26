@@ -1,2 +1,4 @@
-package org.example.lol_test.service;public class MemberService {
+package org.example.lol_test.service;
+
+public class MemberService {
 }

@@ -1,13 +1,61 @@
 package org.example.lol_test.controller;
 
+import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
+import org.example.lol_test.dto.MemberDto;
+import org.example.lol_test.service.MemberService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
+@Slf4j
 @Controller
 public class MemberController {
-    @GetMapping("/Member/login")
-    public String login(){
 
-        return "loginfrm";
+    private MemberService mSer;
+
+    @GetMapping("/Member/login")
+    public String login(@RequestParam HashMap<String,String> member, Model model, HttpSession session, RedirectAttributes rttr){
+        MemberDto mb=mSer.login(member);
+        if(mb!=null){
+            Object url=session.getAttribute("urlPrior_login");
+            System.out.println();
+            if(url!=null){
+                session.setAttribute("mb",mb);
+                return "redirect:"+url.toString();
+            }
+            return "redirect:/main/mainpage";
+        }else{
+            rttr.addFlashAttribute("msg","로그인실패");
+            return "redirect:/Member/loginfrm";
+        }
+    }//login end
+    @GetMapping("/Member/joinfrm")
+    public String tojoin(){
+        log.info("go to joinfrm.html");
+        return "Member/joinfrm";
+    }//join move
+    @GetMapping("/Member/join")
+    public String join(MemberDto member,Model model, RedirectAttributes rttr){
+        log.info("가입개시 {}",member);
+        boolean result=mSer.join(member);
+        if(result) {
+            rttr.addFlashAttribute("msg", "가입실패");
+            return "redirect:/";
+        }else{
+            model.addAttribute("msg","가입실패");
+            return "join";
+        }
+    }//join end
+    @PostMapping("/Member/logout")
+    public String postLogout(HttpSession session, RedirectAttributes rttr){
+        log.info("logout process");
+        session.invalidate();
+        rttr.addFlashAttribute("post 로그아웃");
+        return "redirect:/";
     }
 }

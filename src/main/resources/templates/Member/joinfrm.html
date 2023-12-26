@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <script src="/js/jquery-3.7.0.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<form action="/Member/join">
+    id:<input type="text"><div id="check">id검사중...<<br>
+    pw:<input type="text"><br>
+    <button>회원가입</button>
+</form>
+<script>
+    $.ajax(}{
+        method:'post'
+        url:'/member/checkId'
+        data:String
+    }).done(function(res){
+        console.log("idcheck!",res);
+        #("check").replaceWith(res);
+    })
+</script>
 </body>
 </html>

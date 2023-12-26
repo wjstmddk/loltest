@@ -1,14 +1,16 @@
 <!DOCYTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title> main </title>
     <meta charset="UTF-8">
 </head>
 <body>
 <h3>thymeleaf</h3>
-<form action="/login">
+<form action="/Member/login">
     <input name="id" ><br>
     <input name="pw"><br>
+    <button>login</button>
 </form>
+<a th:href="@{/Member/joinfrm}"> 회원가입</a>
 </body>
 </html>

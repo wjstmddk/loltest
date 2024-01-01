@@ -6,16 +6,17 @@ import org.example.lol_test.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @Slf4j
 public class MemberRestController {
     @Autowired
     private MemberService mSer;
 
-    @GetMapping("/Member/logincheck")
+    @GetMapping("/member/check")
     public String idCheck(String id){
-        log.info("아이디체크");
+        System.out.println("아이디체크");
         String res=mSer.idCheck(id);
         return res;
     }

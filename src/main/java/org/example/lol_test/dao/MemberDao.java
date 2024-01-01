@@ -12,5 +12,5 @@ public interface MemberDao {
 
     boolean join(MemberDto member);
 
-    boolean idCheck(String mId);
+    String idcheck(String id);
 }

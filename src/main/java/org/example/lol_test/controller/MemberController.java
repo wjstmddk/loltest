@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.example.lol_test.dto.MemberDto;
 import org.example.lol_test.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,22 +17,23 @@ import java.util.HashMap;
 @Controller
 public class MemberController {
 
+    @Autowired
     private MemberService mSer;
 
     @GetMapping("/Member/login")
     public String login(@RequestParam HashMap<String,String> member, Model model, HttpSession session, RedirectAttributes rttr){
         MemberDto mb=mSer.login(member);
         if(mb!=null){
-            Object url=session.getAttribute("urlPrior_login");
+            Object url=session.getAttribute("login");
             System.out.println();
             if(url!=null){
-                session.setAttribute("mb",mb);
+                session.setAttribute("member",member);
                 return "redirect:"+url.toString();
             }
             return "redirect:/main/mainpage";
         }else{
             rttr.addFlashAttribute("msg","로그인실패");
-            return "redirect:/Member/loginfrm";
+            return "redirect:/";
         }
     }//login end
     @GetMapping("/Member/joinfrm")
@@ -41,7 +43,7 @@ public class MemberController {
     }//join move
     @GetMapping("/Member/join")
     public String join(MemberDto member,Model model, RedirectAttributes rttr){
-        log.info("가입개시 {}",member);
+        System.out.println("가입개시 :"+member);
         boolean result=mSer.join(member);
         if(result) {
             rttr.addFlashAttribute("msg", "가입실패");

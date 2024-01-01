@@ -15,13 +15,13 @@ public class MemberService {
     public final MemberDao mDao;
 
     public MemberDto login(HashMap<String, String> member) {
-        String encoPwd=mDao.getSecurityPw(member.get("m_id"));
+        String encoPwd=mDao.getSecurityPw(member.get("id"));
         log.info("encode complet");
         BCryptPasswordEncoder pwEncoder=new BCryptPasswordEncoder();
         if(encoPwd!=null){
-            if(pwEncoder.matches(member.get("m_pw"),encoPwd)){
+            if(pwEncoder.matches(member.get("pw"),encoPwd)){
                 log.info("login complet");
-                return mDao.getMemberInfo(member.get("m_id"));
+                return mDao.getMemberInfo(member.get("id"));
             }else {
                 return null;
             }
@@ -31,13 +31,15 @@ public class MemberService {
     }
 
     public boolean join(MemberDto member){
+        System.out.println("member:"+member);
         BCryptPasswordEncoder pwEncoder=new BCryptPasswordEncoder();
         member.setPw(pwEncoder.encode(member.getPw()));
         return mDao.join(member);
     }
 
-    public String idCheck(String m_id){
-        if(mDao.idCheck(m_id)==false){
+    public String idCheck(String id){
+        System.out.println("service진입");
+        if(mDao.idcheck(id)==null){
             return "ok";
         }
         return "fail";

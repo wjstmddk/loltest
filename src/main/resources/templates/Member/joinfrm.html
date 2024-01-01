@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <script src="/js/jquery-3.7.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <form action="/Member/join">
-    id:<input type="text"><div id="check">id검사중...<<br>
-    pw:<input type="text"><br>
+    id:<input type="text" id="id" name="id"><input th:type="button" id="check" value="idcheck"></input><p id="result"></p><br>
+    pw:<input type="password" name="pw"><br>
+    lolid:<input type="text" name="lolId"><br>
     <button>회원가입</button>
 </form>
 <script>
-    $.ajax(}{
-        method:'post'
-        url:'/member/checkId'
-        data:String
-    }).done(function(res){
-        console.log("idcheck!",res);
-        #("check").replaceWith(res);
+    $('#check').on("click",function() {
+        let id=document.getElementById('id').value
+        console.log(id)
+        $.ajax({
+            method: 'get',
+            url: '/member/check',
+            data: {'id':id}
+        }).done(function (res) {
+            console.log(res);
+            $("#result").html(res);
+        })
+
     })
 </script>
 </body>

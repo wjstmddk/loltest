@@ -30,7 +30,7 @@ public class MemberController {
                 session.setAttribute("member",member);
                 return "redirect:"+url.toString();
             }
-            return "redirect:/main/mainpage";
+            return "redirect:/main/playersearch";
         }else{
             rttr.addFlashAttribute("msg","로그인실패");
             return "redirect:/";

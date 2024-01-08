@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.example.lol_test.dto.MemberDto;
 @Mapper
 public interface MemberDao {
-    boolean MemberLogin(MemberDto mDto);
+//    boolean MemberLogin(MemberDto mDto);
 
     String getSecurityPw(String mId);
 

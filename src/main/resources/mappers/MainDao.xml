@@ -3,7 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.example.lol_test.dao.MainDao">
     <select id="getGameList" resultType="org.example.lol_test.dto.GameDto">
-          select * from lol_data.semi where gameId=ANY(select gameId from semi where summonerName=#{summonerName})
+          select gameId, tier, summonerName, championName, spell1Name, spell2Name, item0,item1, item2,item3,item4,item5,item6,
+                 teamPosition, kills, deaths, assists from lol_data.semi
+                              where gameId=ANY(select gameId from semi where summonerName=#{summonerName})
     </select>
 
 </mapper>

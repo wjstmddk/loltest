@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <div class="top-bar">
     <div class="contents">
-        <a onclick="main()">testpage</a>
+        <button id="main()">testpage</button>
         <h2>롤 사이트</h2>
         <nav>
             <ul>
-                <li id="m_name">테스트님</li>
+                <li id="m_name" th:text="'[user]'+${session.member}">테스트님</li>
                 <li>
                     <form action="member/logout" method="post">
                         <button>logout</button>
@@ -13,8 +12,20 @@
                 </li>
                 <li><a href="/main/playersearch">전적검색</a></li>
                 <li><a href="/main/playerinfo">소환사 검색</a></li>
-                <li><a href="/main/mypage"> 내 정보 보기</a></li>
+                <li><a href="/member/mypage"> 내 정보 보기</a></li>
+                <li><a href="/main/complain">문의개시판</a></li>
             </ul>
         </nav>
     </div>
 </div>
+
+<script>
+    function main(){
+        let id=`${mb.id}`;
+        if(id==''){
+            location.href="/"
+        }else{
+            location.href="/main/return"
+        }
+    }
+</script>

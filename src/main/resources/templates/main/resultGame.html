@@ -5,10 +5,53 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h3>mainpage</h3>
-<form action="/main/game" method="post">
-    <input type="text" id="lol_id", name="lol_id">
-    <input type="text" id="tag", name="tag">
-</form>
+<div th:include="moduls/header"></div>
+<h3>resultpage</h3>
+<table border="1">
+    <tbody th:each="gameList,Liststat:${gList}">
+<!--    <th:block th:each="game:${gameList}">-->
+<!--        <th th:text="${game.tier}">-->
+    <tr>
+        <th>gameId</th>
+        <th>티어</th>
+        <!--        <th th:text="${gameList[0].tier}"></th>-->
+        <th>챔피언</th>
+        <th>플레이어</th>
+        <th>스팰1</th>
+        <th>스팰2</th>
+        <th>아이템</th>
+        <th>아이템</th>
+        <th>아이템</th>
+        <th>아이템</th>
+        <th>아이템</th>
+        <th>아이템</th>
+        <th>아이템</th>
+        <th>포지션</th>
+        <th>킬</th>
+        <th>데스</th>
+        <th>어시스트</th>
+    </tr>
+    <tr th:each="game:${gameList}">
+        <td th:text="${game.gameId}"></td>
+        <td th:text="${game.tier}"></td>
+        <td th:text="${game.summonerName}"></td>
+        <td th:text="${game.championName}"></td>
+        <td th:text="${game.spell1Name}"></td>
+        <td th:text="${game.spell2Name}"></td>
+        <td th:text="${game.item0}"></td>
+        <td th:text="${game.item1}"></td>
+        <td th:text="${game.item2}"></td>
+        <td th:text="${game.item3}"></td>
+        <td th:text="${game.item4}"></td>
+        <td th:text="${game.item5}"></td>
+        <td th:text="${game.item6}"></td>
+        <td th:text="${game.teamPosition}"></td>
+        <td th:text="${game.kills}"></td>
+        <td th:text="${game.deaths}"></td>
+        <td th:text="${game.assists}"></td>
+    </tr>
+
+    </tbody>
+</table>
 </body>
 </html>

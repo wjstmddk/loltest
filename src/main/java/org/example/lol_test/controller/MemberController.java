@@ -30,7 +30,7 @@ public class MemberController {
                 session.setAttribute("member",member);
                 return "redirect:"+url.toString();
             }
-            return "redirect:/main/playersearch";
+            return "/main/playersearch";
         }else{
             rttr.addFlashAttribute("msg","로그인실패");
             return "redirect:/";
@@ -41,6 +41,8 @@ public class MemberController {
         log.info("go to joinfrm.html");
         return "Member/joinfrm";
     }//join move
+    @GetMapping("/member/mypage")
+    public String gomyinfo(){return "member/mypage";}
     @GetMapping("/Member/join")
     public String join(MemberDto member,Model model, RedirectAttributes rttr){
         System.out.println("가입개시 :"+member);
@@ -53,9 +55,9 @@ public class MemberController {
             return "join";
         }
     }//join end
-    @PostMapping("/Member/logout")
+    @PostMapping("/Member/member/logout")
     public String postLogout(HttpSession session, RedirectAttributes rttr){
-        log.info("logout process");
+        System.out.println("logout process");
         session.invalidate();
         rttr.addFlashAttribute("post 로그아웃");
         return "redirect:/";

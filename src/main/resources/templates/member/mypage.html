@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        if(document.getElementById('showpass')){
+            div.id.style.display='block'
+        }else{
+            div.id.style.display='none'
+        }
+    </script>
+</head>
+<body>
+    id:<div th:text="member.id"></div><br>
+    <a id="showpass">pw<div id="pass" th:text="member.pw"></div></a>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
-        if(document.getElementById('showpass')){
+        if(document.getElementById('showpass')=='none'){
             div.id.style.display='block'
         }else{
             div.id.style.display='none'
@@ -12,8 +12,8 @@
     </script>
 </head>
 <body>
-    id:<div th:text="member.id"></div><br>
-    <a id="showpass">pw<div id="pass" th:text="member.pw"></div></a>
+    id:<span th:text="${session.member}"></span><br>
+    <button id="showpass">pw<span id="pass" th:text="${member}"></span></button>
 
 </body>
 </html>

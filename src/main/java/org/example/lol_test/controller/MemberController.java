@@ -25,9 +25,9 @@ public class MemberController {
         MemberDto mb=mSer.login(member);
         if(mb!=null){
             Object url=session.getAttribute("login");
-            System.out.println();
+            System.out.println(member);
+            session.setAttribute("member",mb);
             if(url!=null){
-                session.setAttribute("member",member);
                 return "redirect:"+url.toString();
             }
             return "/main/playersearch";
@@ -55,7 +55,7 @@ public class MemberController {
             return "join";
         }
     }//join end
-    @PostMapping("/Member/member/logout")
+    @PostMapping("/member/logout")
     public String postLogout(HttpSession session, RedirectAttributes rttr){
         System.out.println("logout process");
         session.invalidate();

@@ -4,9 +4,9 @@
         <h2>롤 사이트</h2>
         <nav>
             <ul>
-                <li id="m_name" th:text="'[user]'+${session.member}">테스트님</li>
+                <li id="m_name" th:text="|[user]${session.member.lolId}|">테스트님</li>
                 <li>
-                    <form action="member/logout" method="post">
+                    <form action="/member/logout" method="post">
                         <button>logout</button>
                     </form>
                 </li>

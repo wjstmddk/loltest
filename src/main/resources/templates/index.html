@@ -6,12 +6,12 @@
 </head>
 <body>
 <h3>thymeleaf</h3>
-<form  name="login" action="/Member/login">
+<form  name="login" action="/member/login">
     <input th:type="text" name="id" ><br>
     <input th:type="password" name="pw"><br>
     <button>login</button>
 </form>
-<a th:href="@{/templates/member/joinfrm}"> 회원가입</a>
+<a th:href="@{member/joinfrm}"> 회원가입</a>
 
 </body>
 </html>

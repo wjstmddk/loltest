@@ -39,14 +39,8 @@ public class GameService {
               setlist.add(gList.get(cnt));
               cnt++;
             }
-//            System.out.println(setlist);
-//            System.out.println("===================================");
             resultList.add(setlist);
-            System.out.println(resultList.get(0));
         }
-        System.out.println("========================================================");
-        System.out.println(resultList);
         return resultList;
     }
 }
-//j 0-(size-1)

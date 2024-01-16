@@ -44,4 +44,14 @@ public class MemberService {
         }
         return "fail";
     }
+
+    public boolean delete(MemberDto member){
+        System.out.println("회원탈퇴 진입");
+        return mDao.delete(member.getId());
+    }
+
+    public boolean update(MemberDto member) {
+        System.out.println("pw update");
+        return mDao.update(member);
+    }
 }

@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.example.lol_test.dto.MemberDto;
 @Mapper
 public interface MemberDao {
-//    boolean MemberLogin(MemberDto mDto);
 
     String getSecurityPw(String mId);
 
@@ -13,4 +12,8 @@ public interface MemberDao {
     boolean join(MemberDto member);
 
     String idcheck(String id);
+
+    boolean delete(String id);
+
+    boolean update(MemberDto member);
 }

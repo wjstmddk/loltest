@@ -20,7 +20,7 @@ public class MemberController {
     @Autowired
     private MemberService mSer;
 
-    @GetMapping("/Member/login")
+    @GetMapping("/member/login")
     public String login(@RequestParam HashMap<String,String> member, Model model, HttpSession session, RedirectAttributes rttr){
         MemberDto mb=mSer.login(member);
         if(mb!=null){
@@ -36,10 +36,10 @@ public class MemberController {
             return "redirect:/";
         }
     }//login end
-    @GetMapping("/Member/joinfrm")
+    @GetMapping("/member/joinfrm")
     public String tojoin(){
         log.info("go to joinfrm.html");
-        return "Member/joinfrm";
+        return "member/joinfrm";
     }//join move
     @GetMapping("/member/mypage")
     public String gomyinfo(){return "member/mypage";}
@@ -61,5 +61,22 @@ public class MemberController {
         session.invalidate();
         rttr.addFlashAttribute("post 로그아웃");
         return "redirect:/";
+    }
+    @GetMapping("/member/delete")
+    public String delete(HttpSession session, RedirectAttributes rttr){
+        System.out.println("delete");
+        if(mSer.delete((MemberDto) session.getAttribute("member"))){
+            rttr.addFlashAttribute("탈퇴가 완료되었습니다");
+            return "index";
+        }else{
+            rttr.addFlashAttribute("탈퇴가 정상 처리되지 않았습니다");
+            return "redirect:/";
+        }
+    }
+    @GetMapping("/member/update")
+    public String update(HttpSession session, RedirectAttributes rttr){
+        System.out.println("update");
+        mSer.update((MemberDto) session.getAttribute("member"));
+        return "index";
     }
 }

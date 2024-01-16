@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script>
-        if(document.getElementById('showpass')=='none'){
-            div.id.style.display='block'
-        }else{
-            div.id.style.display='none'
-        }
-    </script>
 </head>
 <body>
-    id:<span th:text="${session.member}"></span><br>
-    <button id="showpass">pw<span id="pass" th:text="${member}"></span></button>
-
+    id:<span th:text="${session.member.id}"></span><br>
+    pw:<input type="text" id="pass"></input>
+    <button id="showpass">변경하기</button><br>
+    lol id:<span th:text="${session.member.lolId}"></span><br>
+    <a href="/member/delete">삭제하기</a>
 </body>
 </html>
